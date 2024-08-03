@@ -2,14 +2,22 @@
   "name": "d1",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/main.js",
+    "albums:create": "wrangler d1 execute younha-api-db --remote --file=./sql/createAlbumsTable.sql",
+    "albums:insert": "wrangler d1 execute younha-api-db --remote --file=./sql/insertAlbumsRows.sql",
+    "albums:local:create": "wrangler d1 execute younha-api-db --local --file=./sql/createAlbumsTable.sql",
+    "albums:local:insert": "wrangler d1 execute younha-api-db --local --file=./sql/insertAlbumsRows.sql",
+    "songs:create": "wrangler d1 execute younha-api-db --remote --file=./sql/createSongsTable.sql",
+    "songs:insert": "wrangler d1 execute younha-api-db --remote --file=./sql/insertSongsRows.sql",
+    "songs:local:create": "wrangler d1 execute younha-api-db --local --file=./sql/createSongsTable.sql",
+    "songs:local:insert": "wrangler d1 execute younha-api-db --local --file=./sql/insertSongsRows.sql"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.1.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "wrangler": "^3.68.0"
   }
 }

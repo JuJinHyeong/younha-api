@@ -9,16 +9,17 @@ type Data = {
 
 // CREATE TABLE 문 생성
 export function createTableSQL(tableName: string, columns: Column[]): string {
-  const columnsDef = columns.map((col) => `${col.name} ${col.type}`).join(", ");
-  return `CREATE TABLE ${tableName} (${columnsDef});`;
+  const columnsDef = columns.map((col) => `${col.name} ${col.type} NOT NULL`).join(", ");
+  return `DROP TABLE IF EXISTS ${tableName}; CREATE TABLE ${tableName} (id INTEGER PRIMARY KEY AUTOINCREMENT, ${columnsDef});`;
 }
 
 // INSERT INTO 문 생성
-export function insertIntoSQL(tableName: string, data: Data): string {
-  const columns = Object.keys(data).join(", ");
-  const values = Object.values(data)
-    .map((value) => (typeof value === "string" ? `'${value}'` : value))
-    .join(", ");
+export function insertIntoSQL(tableName: string, data: Data[]): string {
+  const columns = Object.keys(data[0]).join(", ");
+  const escape = (data: string) => {
+    return data.replaceAll('"', '\"\"');
+  }
+  const values = data.map((elem) => Object.values(elem).map((elem) => `${elem}`).map((elem) => `"${escape(elem)}"`).join(", ")).join("), (");
 
   return `INSERT INTO ${tableName} (${columns}) VALUES (${values});`;
 }

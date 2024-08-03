@@ -1,0 +1,4 @@
+[[d1_databases]]
+binding = "DB" # available in your Worker on env.DB
+database_name = "younha-api-db"
+database_id = "06e46683-b26e-4688-abd6-0183456039e6"
