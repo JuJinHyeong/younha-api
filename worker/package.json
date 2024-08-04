@@ -7,7 +7,15 @@
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "test": "vitest",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "albums:create": "wrangler d1 execute younha-api-db --remote --file=./sql/createAlbumsTable.sql",
+    "albums:insert": "wrangler d1 execute younha-api-db --remote --file=./sql/insertAlbumsRows.sql",
+    "albums:local:create": "wrangler d1 execute younha-api-db --local --file=./sql/createAlbumsTable.sql",
+    "albums:local:insert": "wrangler d1 execute younha-api-db --local --file=./sql/insertAlbumsRows.sql",
+    "songs:create": "wrangler d1 execute younha-api-db --remote --file=./sql/createSongsTable.sql",
+    "songs:insert": "wrangler d1 execute younha-api-db --remote --file=./sql/insertSongsRows.sql",
+    "songs:local:create": "wrangler d1 execute younha-api-db --local --file=./sql/createSongsTable.sql",
+    "songs:local:insert": "wrangler d1 execute younha-api-db --local --file=./sql/insertSongsRows.sql"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.5",

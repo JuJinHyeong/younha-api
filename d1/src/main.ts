@@ -11,6 +11,7 @@ const GenerateCreateAlbumsTableSql = () => {
     }));
     const sql = SqlMaker.createTableSQL("Albums", columns);
     fs.writeFileSync(path.join(__dirname + "/../sql/createAlbumsTable.sql"), sql, {encoding: "utf-8", flag: "" });
+    fs.writeFileSync(path.join(__dirname + "/../../worker/sql/createAlbumsTable.sql"), sql, {encoding: "utf-8", flag: "" });
   } catch (err) {
     console.error(err);
   }
@@ -21,6 +22,7 @@ const GenerateInsertAlbumsDataSql = () => {
     const data = JSON.parse(fs.readFileSync("./data/albumData.json", "utf-8"));
     const sql = SqlMaker.insertIntoSQL("Albums", data);
     fs.writeFileSync(path.join(__dirname + "/../sql/insertAlbumsRows.sql"), sql, {encoding: "utf-8", flag: "" });
+    fs.writeFileSync(path.join(__dirname + "/../../worker/sql/insertAlbumsRows.sql"), sql, {encoding: "utf-8", flag: "" });
   } catch(err){
     console.error(err);
   }
@@ -35,6 +37,7 @@ const GenerateCreateSongsTableSql = () => {
     }));
     const sql = SqlMaker.createTableSQL("Songs", columns);
     fs.writeFileSync(path.join(__dirname + "/../sql/createSongsTable.sql"), sql, {encoding: "utf-8", flag: "" });
+    fs.writeFileSync(path.join(__dirname + "/../../worker/sql/createSongsTable.sql"), sql, {encoding: "utf-8", flag: "" });
   } catch (err) {
     console.error(err);
   }
@@ -48,6 +51,7 @@ const GenerateInsertSongsDataSql = () => {
       sql += SqlMaker.insertIntoSQL("Songs", data.splice(0, 20));
     }
     fs.writeFileSync(path.join(__dirname + "/../sql/insertSongsRows.sql"), sql, {encoding: "utf-8", flag: "" });
+    fs.writeFileSync(path.join(__dirname + "/../../worker/sql/insertSongsRows.sql"), sql, {encoding: "utf-8", flag: "" });
   } catch(err){
     console.error(err);
   }
